@@ -30,12 +30,12 @@ pipeline {
             }
         }
 
-        // stage('Deploy') {
-        //     steps {
-        //         // Deployment steps (e.g., uploading to a server or a cloud service)
-        //         // Example: sh 'scp -r ./dist user@server:/path/to/deploy'
-        //     }
-        // }
+        stage('Deploy') {
+            steps {
+               echo 'deploying'
+                // Example: sh 'scp -r ./dist user@server:/path/to/deploy'
+            }
+        }
     }
 
     post {
