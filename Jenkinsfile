@@ -51,7 +51,7 @@ pipeline {
     agent any
     
     tools {
-        nodejs 'node server' // Use the name you configured in Global Tool Configuration
+        nodejs 'node server' 
        }
 
     stages {
