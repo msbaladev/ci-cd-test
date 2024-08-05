@@ -60,19 +60,19 @@ pipeline {
                 git url: 'https://github.com/msbaladev/ci-cd-test.git', credentialsId: 'github-pat', branch: 'main'
             }
         }
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
-                echo 'Building...'
+                sh "npm install"
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
-                echo 'Testing...'
+                echo 'npm run build...'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying...'
+                sh 'npm start'
             }
         }
     }
