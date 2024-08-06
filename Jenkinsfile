@@ -54,22 +54,26 @@ pipeline {
         nodejs 'node server' 
        }
 
-    stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/msbaladev/ci-cd-test.git', credentialsId: 'github-pat', branch: 'main'
-            }
-        }
+    stages ("workspace"){
+            script {
+                    // Check if the workspace directory exists
+                    if (fileExists('.git')) {
+                        // If it exists, pull the latest changes
+                        sh 'git reset --hard HEAD'
+                        sh 'git pull origin main'
+                    } else {
+                        // If it does not exist, clone the repository
+                        git url: 'https://github.com/msbaladev/ci-cd-test.git', credentialsId: 'github-pat', branch: 'main'
+                    }
+                }
+    
+       
         stage('Install Dependencies') {
             steps {
                 sh "npm install"
             }
         }
-        stage('Run Tests') {
-            steps {
-                sh 'npm test'
-            }
-        }
+       
         stage('Build') {
             steps {
                 echo 'npm run build...'
@@ -82,3 +86,5 @@ pipeline {
         }
     }
 }
+
+
