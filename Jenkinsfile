@@ -9,15 +9,7 @@ pipeline {
         stage('Prepare Workspace') {
             steps {
                 script {
-                    // Check if the workspace directory exists
-                    if (fileExists('.git')) {
-                        // If it exists, pull the latest changes
-                        sh 'git reset --hard HEAD'
-                        sh 'git pull origin main'
-                    } else {
-                        // If it does not exist, clone the repository
-                        git url: 'https://github.com/msbaladev/ci-cd-test.git', credentialsId: 'github-pat', branch: 'main'
-                    }
+                   git url: 'https://github.com/msbaladev/ci-cd-test.git', credentialsId: 'github-pat', branch: 'main'
                 }
             }
         }
@@ -50,3 +42,18 @@ pipeline {
 }
 
 
+
+
+//    steps {
+//                 script {
+//                     // Check if the workspace directory exists
+//                     if (fileExists('.git')) {
+//                         // If it exists, pull the latest changes
+//                         sh 'git reset --hard HEAD'
+//                         sh 'git pull origin main'
+//                     } else {
+//                         // If it does not exist, clone the repository
+//                         git url: 'https://github.com/msbaladev/ci-cd-test.git', credentialsId: 'github-pat', branch: 'main'
+//                     }
+//                 }
+//             }
