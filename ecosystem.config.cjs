@@ -5,7 +5,7 @@ module.exports = {
         script: './server.js',        // Script to execute
         instances: 1,              // Number of instances to be started
         autorestart: true,         // Enable/disable auto-restart
-        watch: false,              // Enable watch & restart if file changes
+        watch: true,              // Enable watch & restart if file changes
         max_memory_restart: '1G',  // Restart if memory exceeds this limit
         env: {
           NODE_ENV: 'development', // Environment variables for development
