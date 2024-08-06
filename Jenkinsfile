@@ -72,6 +72,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                sh 'cp -r * /var/www/nodeapp'
                 sh 'pm2 startOrRestart ecosystem.config.cjs'
             }
         }
