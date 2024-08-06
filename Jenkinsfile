@@ -65,6 +65,11 @@ pipeline {
                 sh "npm install"
             }
         }
+        stage('Run Tests') {
+            steps {
+                sh 'npm test'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'npm run build...'
@@ -72,7 +77,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'nohup npm start &'
+                sh 'pm2 restart ecosystem.config.js'
             }
         }
     }
