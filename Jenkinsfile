@@ -72,8 +72,16 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'nohup npm start &'
+                sh 'pm2 startOrRestart ecosystem.config.cjs'
             }
+        }
+    }
+      post {
+        success {
+            echo 'Deployment successful!'
+        }
+        failure {
+            echo 'Deployment failed!'
         }
     }
 }
